@@ -1,4 +1,4 @@
-package test.demo.producer;
+package nl.tsai.producer;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;

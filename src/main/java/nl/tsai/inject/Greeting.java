@@ -1,4 +1,4 @@
-package test.demo.inject;
+package nl.tsai.inject;
 
 /**
  * https://docs.oracle.com/javaee/7/tutorial/cdi-basic007.htm

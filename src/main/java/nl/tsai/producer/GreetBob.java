@@ -1,4 +1,4 @@
-package test.demo.inject;
+package nl.tsai.producer;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.Retention;
@@ -14,5 +14,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Qualifier
 @Retention(RUNTIME)
 @Target({FIELD, METHOD, TYPE, PARAMETER})
-public @interface Informal {
+public @interface GreetBob {
 }

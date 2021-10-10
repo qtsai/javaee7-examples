@@ -1,4 +1,4 @@
-package test.demo.inject;
+package nl.tsai.inject;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

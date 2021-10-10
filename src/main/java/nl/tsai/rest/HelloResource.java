@@ -1,10 +1,10 @@
-package test.demo.rest;
+package nl.tsai.rest;
 
-import test.demo.event.Message;
-import test.demo.event.MessageEvent;
-import test.demo.inject.GreetingsFacade;
-import test.demo.producer.GreetBob;
-import test.demo.scope.ScopedCountFacade;
+import nl.tsai.event.Message;
+import nl.tsai.event.MessageEvent;
+import nl.tsai.inject.GreetingsFacade;
+import nl.tsai.producer.GreetBob;
+import nl.tsai.scope.ScopedCountFacade;
 
 import javax.enterprise.event.Event;
 import javax.inject.Inject;

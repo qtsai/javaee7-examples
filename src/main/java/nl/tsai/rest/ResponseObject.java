@@ -1,4 +1,4 @@
-package test.demo.rest;
+package nl.tsai.rest;
 
 import java.util.HashMap;
 import java.util.Map;

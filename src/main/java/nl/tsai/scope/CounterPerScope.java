@@ -1,4 +1,4 @@
-package test.demo.scope;
+package nl.tsai.scope;
 
 public class CounterPerScope {
     private final int application;
