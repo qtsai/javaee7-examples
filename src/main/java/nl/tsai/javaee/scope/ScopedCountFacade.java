@@ -1,4 +1,4 @@
-package nl.tsai.scope;
+package nl.tsai.javaee.scope;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

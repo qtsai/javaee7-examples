@@ -1,4 +1,4 @@
-package nl.tsai.producer;
+package nl.tsai.javaee.producer;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
@@ -9,7 +9,7 @@ import java.util.Random;
  * https://docs.oracle.com/javaee/7/tutorial/cdi-basic012.htm
  */
 @Stateless
-public class GreetingProducer {
+public class GreetBobProducer {
 
     @Produces
     @GreetBob

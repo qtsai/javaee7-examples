@@ -1,4 +1,4 @@
-package nl.tsai.rest;
+package nl.tsai.javaee;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

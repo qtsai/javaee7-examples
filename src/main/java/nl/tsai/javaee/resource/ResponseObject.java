@@ -1,10 +1,9 @@
-package nl.tsai.rest;
+package nl.tsai.javaee.resource;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ResponseObject {
-
     private final Map<String, Object> map = new HashMap<>();
 
     public void put(String s, Object o) {

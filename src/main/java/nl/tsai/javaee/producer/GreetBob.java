@@ -1,4 +1,4 @@
-package nl.tsai.producer;
+package nl.tsai.javaee.producer;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.Retention;

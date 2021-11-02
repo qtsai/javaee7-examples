@@ -1,10 +1,11 @@
-package nl.tsai.rest;
+package nl.tsai.javaee.resource;
 
-import nl.tsai.event.Message;
-import nl.tsai.event.MessageEvent;
-import nl.tsai.inject.GreetingsFacade;
-import nl.tsai.producer.GreetBob;
-import nl.tsai.scope.ScopedCountFacade;
+import nl.tsai.javaee.converter.QueryParamObject;
+import nl.tsai.javaee.event.Message;
+import nl.tsai.javaee.event.MessageEvent;
+import nl.tsai.javaee.inject.GreetingsFacade;
+import nl.tsai.javaee.producer.GreetBob;
+import nl.tsai.javaee.scope.ScopedCountFacade;
 
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
@@ -32,13 +33,23 @@ public class HelloResource {
     @GreetBob
     private String greetBob;
 
+    /**
+     * http://localhost:9080/javaee7-examples/api/hello/hi?name=Jack
+     *
+     * @return formal greeting from {@link nl.tsai.javaee.inject.FormalHelloService}
+     */
     @GET
     @Path("hi")
-    public Response hi() {
-        String formalGreeting = greetingsFacade.formal();
+    public Response hi(@QueryParam("name") String name) {
+        String formalGreeting = greetingsFacade.formal(name);
         return createResponse(formalGreeting);
     }
 
+    /**
+     * http://localhost:9080/javaee7-examples/api/hello/hey?name=John
+     *
+     * @return informal greeting from {@link nl.tsai.javaee.inject.InformalHeyService}
+     */
     @GET
     @Path("hey")
     public Response hey(@QueryParam("name") QueryParamObject object) {
@@ -46,6 +57,11 @@ public class HelloResource {
         return createResponse(informalGreeting);
     }
 
+    /**
+     * http://localhost:9080/javaee7-examples/api/hello/bob
+     *
+     * @return greet bob from {@link nl.tsai.javaee.producer.GreetBobProducer}
+     */
     @GET
     @Path("bob")
     public Response bob() {
@@ -55,11 +71,9 @@ public class HelloResource {
 
     private Response createResponse(String greeting) {
         messageEventPublisher.fire(new MessageEvent(greeting));
-
         ResponseObject response = new ResponseObject();
         response.put("count", scopedCountFacade.count());
         response.put("greeting", greeting);
-
         return Response.ok().entity(response).build();
     }
 }

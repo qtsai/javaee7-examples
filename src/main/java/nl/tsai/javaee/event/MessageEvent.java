@@ -1,4 +1,4 @@
-package nl.tsai.event;
+package nl.tsai.javaee.event;
 
 import java.time.LocalDate;
 

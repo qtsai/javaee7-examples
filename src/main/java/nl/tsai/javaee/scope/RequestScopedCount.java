@@ -1,4 +1,4 @@
-package nl.tsai.scope;
+package nl.tsai.javaee.scope;
 
 import javax.enterprise.context.RequestScoped;
 

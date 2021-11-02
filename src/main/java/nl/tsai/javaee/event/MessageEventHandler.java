@@ -1,4 +1,4 @@
-package nl.tsai.event;
+package nl.tsai.javaee.event;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Observes;

@@ -1,4 +1,4 @@
-package nl.tsai.inject;
+package nl.tsai.javaee.inject;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,11 +16,11 @@ public class GreetingsFacade {
     @Informal
     private Greeting informal;
 
-    public String formal() {
-        return formal.say();
+    public String formal(String name) {
+        return formal.say(name);
     }
 
-    public String informal() {
-        return informal.say();
+    public String informal(String name) {
+        return informal.say(name);
     }
 }
