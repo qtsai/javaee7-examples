@@ -5,8 +5,11 @@ how to run dev:
 todo:
 
 add logger
-alternatives...
 arquillian tests
+
+skipped:
+
+@Specializes - https://docs.oracle.com/javaee/7/tutorial/cdi-adv002.htm
 
 resources:
 

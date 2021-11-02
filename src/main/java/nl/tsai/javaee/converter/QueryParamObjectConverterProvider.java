@@ -8,6 +8,8 @@ import java.lang.reflect.Type;
 
 @Provider
 public class QueryParamObjectConverterProvider implements ParamConverterProvider {
+
+    @SuppressWarnings("unchecked")
     @Override
     public <T> ParamConverter<T> getConverter(Class<T> rawType, Type genericType, Annotation[] annotations) {
         return rawType.isAssignableFrom(QueryParamObject.class) ?
