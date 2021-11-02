@@ -36,7 +36,10 @@ public class HelloResource {
     /**
      * http://localhost:9080/javaee7-examples/api/hello/hi?name=Jack
      *
-     * @return formal greeting from {@link nl.tsai.javaee.inject.FormalHelloService}
+     * @return
+     * formal greeting from {@link nl.tsai.javaee.inject.FormalHelloService}
+     * OR
+     * friendly greeting from {@link nl.tsai.javaee.inject.alternatives.WhatsUpService} when alternative is declared
      */
     @GET
     @Path("hi")
