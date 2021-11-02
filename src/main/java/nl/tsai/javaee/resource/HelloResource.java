@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 @Path("hello")
@@ -40,8 +41,8 @@ public class HelloResource {
 
     @GET
     @Path("hey")
-    public Response hey() {
-        String informalGreeting = greetingsFacade.informal();
+    public Response hey(@QueryParam("name") QueryParamObject object) {
+        String informalGreeting = greetingsFacade.informal(object.getName());
         return createResponse(informalGreeting);
     }
 
