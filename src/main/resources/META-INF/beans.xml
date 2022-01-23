@@ -12,5 +12,10 @@
     <interceptors>
         <class>nl.tsai.javaee.interceptor.LoggedInterceptor</class>
     </interceptors>
+    <!-- https://docs.oracle.com/javaee/7/tutorial/cdi-adv007.htm#GKHQF -->
+    <decorators>
+        <class>nl.tsai.javaee.decorator.BigGuyDecorator</class>
+        <class>nl.tsai.javaee.decorator.SmallGuyDecorator</class>
+    </decorators>
 </beans>
 

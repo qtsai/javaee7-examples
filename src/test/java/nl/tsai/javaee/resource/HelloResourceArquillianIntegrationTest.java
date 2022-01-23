@@ -57,7 +57,7 @@ public class HelloResourceArquillianIntegrationTest {
         //2nd call
         RestAssured
                 .given().queryParam("name", name)
-                .when().get(baseUrl + "api/hello/hi")
+                .when().get(baseUrl + "api/hello/hey")
                 .then().assertThat().body("map.greeting", containsString(name));
     }
 
