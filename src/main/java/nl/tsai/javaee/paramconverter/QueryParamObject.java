@@ -1,4 +1,4 @@
-package nl.tsai.javaee.converter;
+package nl.tsai.javaee.paramconverter;
 
 public class QueryParamObject {
 

@@ -1,6 +1,6 @@
 package nl.tsai.javaee.resource;
 
-import nl.tsai.javaee.converter.QueryParamObject;
+import nl.tsai.javaee.paramconverter.QueryParamObject;
 import nl.tsai.javaee.event.Message;
 import nl.tsai.javaee.event.MessageEvent;
 import nl.tsai.javaee.inject.GreetingsFacade;
