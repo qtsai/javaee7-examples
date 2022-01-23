@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.File;
 import java.net.URL;
 
 import static org.hamcrest.core.StringContains.containsString;
@@ -26,7 +27,7 @@ public class HelloResourceArquillianIntegrationTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackages(true, "nl.tsai")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsManifestResource(new File("/META-INF/beans.xml"));
     }
 
     @Before
@@ -38,6 +39,22 @@ public class HelloResourceArquillianIntegrationTest {
     @RunAsClient
     public void testHi() {
         final String name = "jan";
+        RestAssured
+                .given().queryParam("name", name)
+                .when().get(baseUrl + "api/hello/hi")
+                .then().assertThat().body("map.greeting", containsString(name));
+    }
+
+    @Test
+    @RunAsClient
+    public void testHi_twice() {
+        final String name = "jan";
+        //first call
+        RestAssured
+                .given().queryParam("name", name)
+                .when().get(baseUrl + "api/hello/hi")
+                .then().assertThat().body("map.greeting", containsString(name));
+        //2nd call
         RestAssured
                 .given().queryParam("name", name)
                 .when().get(baseUrl + "api/hello/hi")

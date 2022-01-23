@@ -1,5 +1,7 @@
 package nl.tsai.javaee.inject;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -8,6 +10,24 @@ import javax.inject.Inject;
  */
 @Stateless
 public class GreetingsFacade {
+
+    public GreetingsFacade() {
+        System.out.println(this.getClass().getSimpleName() + " constructor called");
+    }
+
+    @PostConstruct
+    public void postConstruct() {
+        /*
+         * https://stackoverflow.com/questions/3406555/why-use-postconstruct
+         */
+        System.out.println(this.getClass().getSimpleName() + " postconstruct called");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println(this.getClass().getSimpleName() + " predestroy called");
+
+    }
 
     @Inject
     private Greeting formal;

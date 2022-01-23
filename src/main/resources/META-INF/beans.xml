@@ -8,5 +8,9 @@
     <alternatives>
         <class>nl.tsai.javaee.inject.alternatives.WhatsUpService</class>
     </alternatives>
+    <!-- https://docs.oracle.com/javaee/7/tutorial/cdi-adv006.htm -->
+    <interceptors>
+        <class>nl.tsai.javaee.interceptor.LoggedInterceptor</class>
+    </interceptors>
 </beans>
 

@@ -1,5 +1,7 @@
 package nl.tsai.javaee.event;
 
+import nl.tsai.javaee.interceptor.Logged;
+
 import javax.ejb.Stateless;
 import javax.enterprise.event.Observes;
 import javax.enterprise.event.TransactionPhase;
@@ -7,6 +9,7 @@ import javax.enterprise.event.TransactionPhase;
 /**
  * https://docs.oracle.com/javaee/6/tutorial/doc/gkhic.html
  */
+@Logged
 @Stateless
 public class MessageEventHandler {
     public void onMessageEvent(@Observes(during = TransactionPhase.AFTER_SUCCESS) @Message MessageEvent messageEvent) {
