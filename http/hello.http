@@ -1,0 +1,7 @@
+GET http://localhost:9080/javaee7-examples/api/v1/hello/hi?name=Jack
+
+###
+GET http://localhost:9080/javaee7-examples/api/v2/hello/hi?name=Jack
+
+###
+GET http://localhost:9080/javaee7-examples/api/v2-overridden/hello/hi?name=Jack
