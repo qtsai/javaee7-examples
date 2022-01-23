@@ -1,5 +1,8 @@
 package nl.tsai.javaee.client;
 
+import nl.tsai.javaee.client.filter.LoggingRequestFilter;
+import nl.tsai.javaee.client.filter.LoggingResponseFilter;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;
@@ -12,6 +15,8 @@ public class JaxRsClientApi {
     @Produces
     @Named("v1-redirect")
     public Client getClient() {
-        return ClientBuilder.newClient();
+        return ClientBuilder.newClient()
+                .register(LoggingRequestFilter.class)
+                .register(LoggingResponseFilter.class);
     }
 }

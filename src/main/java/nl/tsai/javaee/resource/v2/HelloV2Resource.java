@@ -8,6 +8,8 @@ import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class HelloV2Resource implements HelloResource {
 
@@ -24,13 +26,38 @@ public class HelloV2Resource implements HelloResource {
                 .request().accept(MediaType.APPLICATION_JSON).get();
     }
 
+    /**
+     * https://docs.oracle.com/javaee/7/tutorial/jaxrs-client003.htm
+     * <p>
+     * call bob for async
+     */
     @Override
     public Response hey(QueryParamObject object) {
-        throw new RuntimeException("Not yet implemented...");
+        longRunningTask();
+        return hi(object.getName());
     }
 
     @Override
     public Response bob() {
-        throw new RuntimeException("Not yet implemented...");
+        Future<Response> responseFuture = client.target("http://localhost:9080/javaee7-examples/api/v2-overridden/hello/hey").queryParam("name", "bob")
+                .request().accept(MediaType.APPLICATION_JSON).async().get();
+
+        Response response = null;
+        try {
+            response = responseFuture.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    private void longRunningTask() {
+        try {
+            System.out.println("Waiting for task to complete");
+            Thread.sleep(5000);
+            System.out.println("Task completed");
+        } catch (InterruptedException ignored) {
+        }
     }
 }
