@@ -6,8 +6,10 @@ import nl.tsai.javaee.resource.HelloResource;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.InvocationCallback;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -37,10 +39,33 @@ public class HelloV2Resource implements HelloResource {
         return hi(object.getName());
     }
 
+    /**
+     * some async stuff
+     */
     @Override
     public Response bob() {
-        Future<Response> responseFuture = client.target("http://localhost:9080/javaee7-examples/api/v2-overridden/hello/hey").queryParam("name", "bob")
-                .request().accept(MediaType.APPLICATION_JSON).async().get();
+        Future<Response> responseFuture = client
+                .target("http://localhost:9080/javaee7-examples/api/v2-overridden/hello/hey")
+                .queryParam("name", "bob")
+                .request()
+                .accept(MediaType.APPLICATION_JSON)
+                .async()
+                .get(new InvocationCallback<>() {
+                    @Override
+                    public void completed(Response response) {
+                        System.out.println("Completed task");
+                    }
+
+                    @Override
+                    public void failed(Throwable throwable) {
+                        System.out.println("Error response from task");
+                    }
+                });
+
+        // randomly cancel request
+        if (new Random().nextBoolean()) {
+            responseFuture.cancel(true);
+        }
 
         Response response = null;
         try {
@@ -55,7 +80,10 @@ public class HelloV2Resource implements HelloResource {
     private void longRunningTask() {
         try {
             System.out.println("Waiting for task to complete");
-            Thread.sleep(5000);
+            if (new Random().nextBoolean()) throw new RuntimeException("FAILED TASK P1");
+            Thread.sleep(2500);
+            if (new Random().nextBoolean()) throw new RuntimeException("FAILED TASK P2");
+            Thread.sleep(2500);
             System.out.println("Task completed");
         } catch (InterruptedException ignored) {
         }
